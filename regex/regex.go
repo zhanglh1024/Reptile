@@ -11,7 +11,7 @@ const test  = `my email is zhanglonghu@gmail.com
 `
 
 func main(){
-	re:= regexp.MustCompile(`([a-zA-Z0-9]+)@([a-zA-Z0-9]+)(\.[a-zA-Z0-9]+)(a-zA)`)
+	re:= regexp.MustCompile(`([a-zA-Z0-9]+)@([a-zA-Z0-9]+)(\.[a-zA-Z0-9.]+)`)
 	match := re.FindAllStringSubmatch(test, -1)
 	for _, valu := range match{
 		fmt.Println(valu)

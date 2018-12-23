@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"regexp"
 )
 
 func main() {
@@ -22,6 +23,16 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("resp body:%s", all)
 
+	printAllCity(all)
 }
+
+ func printAllCity(content []byte) {
+	 re := regexp.MustCompile(`<a target="_blank" href="(http://www.zhenai.com/zhenghun/[a-z0-9]+)" [^>]*>([^<]+)</a> `)
+	 city := re.FindAllSubmatch(content, -1)
+
+	 for _, m:= range city{
+	 		fmt.Printf("City:%s url:%s all:%s\n", m[2], m[1], m)
+	 }
+
+ }
